@@ -4,11 +4,11 @@ class BS_Page {
 
     private $infos;
 
-    public function __construct() {
+    public function __construct( $p ) {
         $this->infos = array(
             'lang' => BS_LANG,
             'title' => BS_NAME,
-            'template' => 'index.php'
+            'template' => $p
         );
     }
 
@@ -16,12 +16,26 @@ class BS_Page {
       Template
     ---------------------------------------------------------- */
 
+    private function sendHeaders() {
+        $headers = array();
+
+        // Error 404
+        if ( $this->infos['template'] == '404' ) {
+            $headers[] = 'HTTP/1.0 404 Not Found';
+        }
+
+        foreach ( $headers as $header ) {
+            header( $header );
+        }
+    }
+
     public function loadPage( ) {
         $base_url = BS_PATH . 'views/';
-        $template = $base_url . $this->getInfo( 'template' );
+        $template = $base_url . $this->getInfo( 'template' ) . '.php';
         if ( !file_exists( $template ) ) {
             $template = $base_url . '404.php';
         }
+        $this->sendHeaders();
         include $template;
     }
 

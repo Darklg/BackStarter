@@ -7,6 +7,6 @@
 <head>
     <meta charset="UTF-8" />
     <title><?php echo $this->getInfo('title'); ?></title>
-    <meta name="viewport" content="width=" />
+    <meta name="viewport" content="width=device-width" />
 </head>
 <body>

@@ -24,6 +24,21 @@ include BS_PATH . 'inc/bs-page.php';
   Launch project
 ---------------------------------------------------------- */
 
-$page = new BS_Page();
+/* Get wanted page
+-------------------------- */
+
+$p = 'index';
+
+if ( isset( $_GET['p'] ) ) {
+    $p = '404';
+    if ( $_GET['p'] != 'index' && preg_match( '/^([a-z0-9-_]+)$/', $_GET['p'] ) ) {
+        $p = $_GET['p'];
+    }
+}
+
+/* Set Page
+-------------------------- */
+
+$page = new BS_Page( $p );
 
 $page->loadPage();
