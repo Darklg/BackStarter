@@ -18,6 +18,7 @@ include BS_PATH . 'inc/bs-config.php';
   Includes
 ---------------------------------------------------------- */
 
+include BS_PATH . 'inc/bs-mysql.php';
 include BS_PATH . 'inc/bs-page.php';
 
 /* ----------------------------------------------------------

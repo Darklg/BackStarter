@@ -15,3 +15,11 @@ Changelog
 * HTTP Headers
 * 404 & Test templates
 * Default viewport
+
+2013-11-23 : v 0.3
+---
+
+* URL Rewriting
+* Body Classes
+* MySQL
+* Better default constants

@@ -1,17 +1,27 @@
 <?php
 
 /* ----------------------------------------------------------
-  Default lang
+  In-use constants
 ---------------------------------------------------------- */
 
-if ( !defined( 'BS_LANG' ) ) {
-    define( 'BS_LANG', 'en_EN' );
-}
+$constants = array(
+    /* Default lang */
+    'BS_LANG' => 'en_EN',
+    /* Default Site Name */
+    'BS_NAME' => 'BackStarter',
+    /* MySQL */
+    'BS_DBHOST' => '',
+    'BS_DBNAME' => '',
+    'BS_DBUSER' => '',
+    'BS_DBPASS' => ''
+);
 
 /* ----------------------------------------------------------
-  Default Site Name
+  Define constants if they dont exists
 ---------------------------------------------------------- */
 
-if ( !defined( 'BS_NAME' ) ) {
-    define( 'BS_NAME', 'BackStarter' );
+foreach ( $constants as $id => $value ) {
+    if ( !defined( $id ) ) {
+        define( $id, $value );
+    }
 }

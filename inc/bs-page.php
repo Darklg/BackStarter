@@ -8,7 +8,8 @@ class BS_Page {
         $this->infos = array(
             'lang' => BS_LANG,
             'title' => BS_NAME,
-            'template' => $p
+            'template' => $p,
+            'body_class' => 'page-'.$p
         );
     }
 
