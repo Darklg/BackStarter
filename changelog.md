@@ -23,3 +23,10 @@ Changelog
 * Body Classes
 * MySQL
 * Better default constants
+
+2014-01-08 : v 0.4
+---
+
+* DB Prefix
+* Better MVC organisation
+* Better Model

@@ -7,7 +7,8 @@ define( 'BS_LANG', 'fr_FR' );
 define( 'BS_NAME', 'BackStarter Demo' );
 
 /* MySQL */
-define('BS_DBHOST','localhost');
-define('BS_DBNAME','backstarter');
-define('BS_DBUSER','root');
-define('BS_DBPASS','root');
+define( 'BS_DBHOST', 'localhost' );
+define( 'BS_DBNAME', 'backstarter' );
+define( 'BS_DBUSER', 'root' );
+define( 'BS_DBPASS', 'root' );
+define( 'BS_PREFIX', 'bs_' );

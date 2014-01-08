@@ -4,7 +4,8 @@ class BS_Page {
 
     private $infos;
 
-    public function __construct( $p ) {
+    public function __construct( $p, &$model ) {
+        $this->model = &$model;
         $this->infos = array(
             'lang' => BS_LANG,
             'title' => BS_NAME,
@@ -31,7 +32,7 @@ class BS_Page {
     }
 
     public function loadPage( ) {
-        $base_url = BS_PATH . 'views/';
+        $base_url = BS_VIEWS_DIR;
         $template = $base_url . $this->getInfo( 'template' ) . '.php';
         if ( !file_exists( $template ) ) {
             $template = $base_url . '404.php';
@@ -42,7 +43,7 @@ class BS_Page {
 
     public function getModule( $id ) {
         $content = '';
-        $base_url = BS_PATH . 'views/modules/';
+        $base_url = BS_VIEWS_DIR . 'modules/';
         $module = $base_url . $id . '.php';
         if ( preg_match( '/^([a-z-0-9_]+)$/', $id ) && file_exists( $module ) ) {
             ob_start();

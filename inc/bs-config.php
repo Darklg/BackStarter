@@ -13,7 +13,8 @@ $constants = array(
     'BS_DBHOST' => '',
     'BS_DBNAME' => '',
     'BS_DBUSER' => '',
-    'BS_DBPASS' => ''
+    'BS_DBPASS' => '',
+    'BS_PREFIX' => '',
 );
 
 /* ----------------------------------------------------------
