@@ -31,9 +31,19 @@ Changelog
 * Better MVC organisation
 * Better Model
 
-2014-01-08 : v 0.4.1
+2014-02-15 : v 0.4.1
 ---
 
 * bs-config generation
 * database connection
 * installation start
+
+2014-02-16 : v 0.4.2
+---
+
+* DB: Create table function
+* DB: Select function
+* DB: Better fail info
+* Default site name
+* Install: Create user & options databases
+* Install: Redirections

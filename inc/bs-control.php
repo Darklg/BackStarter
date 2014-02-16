@@ -8,6 +8,7 @@ if ( !defined( 'BS_PATH' ) ) {
   Models
 ---------------------------------------------------------- */
 
+include BS_INC_DIR . 'functions.php';
 include BS_INC_DIR . 'classes/bs-database.php';
 include BS_INC_DIR . 'classes/bs-user.php';
 include BS_INC_DIR . 'classes/bs-page.php';

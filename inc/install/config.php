@@ -57,10 +57,18 @@ if ( !empty( $_POST ) && isset( $_POST['bs-dbhost'] ) ) {
         return;
     }
 
-    // Create config file
-    $filecontent = file_get_contents( BS_PATH . 'bs-default-config.php' );
+    // Test install
+    $db = new BS_Database( $dbfields );
 
+    // Create config file
+    $currentpageurl = getCurrentPageURL();
+    define( 'BS_BASEURL', $currentpageurl );
+
+    $filecontent = file_get_contents( BS_PATH . 'bs-default-config.php' );
     $filecontent .= "
+/* Base URL */
+define( 'BS_BASEURL', '".$currentpageurl."' );
+
 /* Database */
 define( 'BS_DBHOST', '".$dbfields['bs-dbhost']."' );
 define( 'BS_DBNAME', '".$dbfields['bs-dbname']."' );
@@ -68,19 +76,32 @@ define( 'BS_DBUSER', '".$dbfields['bs-dbuser']."' );
 define( 'BS_DBPASS', '".$dbfields['bs-dbpass']."' );
 define( 'BS_PREFIX', '".$dbfields['bs-dbprefix']."' );
 ";
-
-
     file_put_contents( BS_PATH . 'bs-config.php', $filecontent );
 
-    // Test install
-    $db = new BS_Database( $dbfields );
+
     if ( $db->test_install() ) {
         // Redirect to home
+        bs_redirect();
         return;
     }
 
     // Create tables
     // - Users
+    $db->create_table( 'user', array(
+            'id' => '',
+            'email' => '',
+            'password' => '',
+            'level' => 'int(11) unsigned NOT NULL',
+        ) ) ;
+
     // - Options
+    $db->create_table( 'options', array(
+            'id' => '',
+            'name' => '',
+            'value' => 'text'
+        ) ) ;
+
+    // Redirect to home
+    bs_redirect();
 
 }

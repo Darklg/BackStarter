@@ -9,6 +9,8 @@ $constants = array(
     'BS_LANG' => 'en_EN',
     /* Default Site Name */
     'BS_NAME' => 'BackStarter',
+    /* Default Site Name */
+    'BS_BASEURL' => '/',
     /* Database */
     'BS_DBHOST' => '',
     'BS_DBNAME' => '',
