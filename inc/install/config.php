@@ -10,7 +10,7 @@ $content = '
         <div class="box"><label for="bs-name">Site Name :</label><input required name="bs-name" id="bs-name" type="text" value="Back Starter" /></div>
     </fieldset>
     <fieldset class="cssc-form">
-        <div class="box"><label for="bs-admin">Admin :</label><input required name="bs-admin" id="bs-admin" type="text" value="admin" /></div>
+        <div class="box"><label for="bs-adminemail">Admin email :</label><input required name="bs-adminemail" id="bs-adminemail" type="email" value="admin" /></div>
         <div class="box"><label for="bs-adminpass">Pass :</label><input required name="bs-adminpass" id="bs-adminpass" type="password" value="pass" /></div>
     </fieldset>
     <fieldset class="cssc-form">
@@ -32,7 +32,7 @@ $content = '
 
 $dbfields = array(
     'bs-name' => '',
-    'bs-admin' => '',
+    'bs-adminemail' => '',
     'bs-adminpass' => '',
     'bs-dbhost' => '',
     'bs-dbname' => '',
@@ -101,7 +101,19 @@ define( 'BS_PREFIX', '".$dbfields['bs-dbprefix']."' );
             'value' => 'text'
         ) ) ;
 
-    // Redirect to home
-    bs_redirect();
+    // Create admin
+    $user = new BS_User();
+    $new_user = $user->create( $db, array(
+            'email' => $dbfields['bs-adminemail'],
+            'password' => $dbfields['bs-adminpass'],
+        ) );
+
+    if ( is_numeric( $new_user ) ) {
+        // Redirect to home
+        bs_redirect();
+    }
+    else {
+        $content = 'Admin user couldn’t be created :(';
+    }
 
 }

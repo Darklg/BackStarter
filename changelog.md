@@ -47,3 +47,13 @@ Changelog
 * Default site name
 * Install: Create user & options databases
 * Install: Redirections
+
+2014-02-17 : v 0.4.3
+---
+
+* DB : Select where
+* DB : Insert
+* DB : Protect field
+* User : Create
+* User : Test values
+* User : Hash Password

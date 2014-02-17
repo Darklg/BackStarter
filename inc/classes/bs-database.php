@@ -43,7 +43,29 @@ class BS_Database {
         return $row;
     }
 
-    function insert( $database, $values = array() ) {}
+    function select_where( $table_name, $params ) {
+        $where = array();
+        foreach ( $params as $key => $var ) {
+            $where[] = $key . "=".$this->protect_field( $var );
+        }
+        $req = 'SELECT * FROM `'.$this->fields['bs-dbprefix'].$table_name.'`';
+        $req .= ' WHERE ' . implode( ' AND ', $where );
+
+        return $this->select( $req );
+    }
+
+    function insert( $table_name, $values = array() ) {
+        $keys = array_keys( $values );
+        $values = array_map( array( &$this, 'protect_field' ), $values );
+        $req = 'INSERT INTO `'.$this->fields['bs-dbprefix'].$table_name.'`('.implode( ',', $keys ).') VALUES('.implode( ',', $values ).');';
+        $insert = $this->query( $req );
+        if ( $insert !== false ) {
+            $insert = $this->connection->lastInsertId();
+        }
+        return $insert;
+    }
+
+    /* Utilities */
 
     function create_table( $table_name, $columns = array() ) {
         // Set values if empty
@@ -64,6 +86,10 @@ class BS_Database {
         }
         $query .= "PRIMARY key( `id` ) ) CHARSET=utf8;";
         return $this->query( $query );
+    }
+
+    function protect_field( $field ) {
+        return $this->connection->quote( $field );
     }
 
     /* Test */
