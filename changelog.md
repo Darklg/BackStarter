@@ -57,3 +57,12 @@ Changelog
 * User : Create
 * User : Test values
 * User : Hash Password
+
+2014-02-17 : v 0.5
+---
+
+* Full installation process
+* Model : extends
+* Model : messages
+* User : keys
+* bugfixes

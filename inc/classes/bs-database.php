@@ -40,7 +40,7 @@ class BS_Database {
         foreach ( $res as $row ) {
             $rows[$row];
         }
-        return $row;
+        return $rows;
     }
 
     function select_where( $table_name, $params ) {
@@ -57,7 +57,7 @@ class BS_Database {
     function insert( $table_name, $values = array() ) {
         $keys = array_keys( $values );
         $values = array_map( array( &$this, 'protect_field' ), $values );
-        $req = 'INSERT INTO `'.$this->fields['bs-dbprefix'].$table_name.'`('.implode( ',', $keys ).') VALUES('.implode( ',', $values ).');';
+        $req = 'INSERT INTO `'.$this->fields['bs-dbprefix'].$table_name.'`(`'.implode( '`,`', $keys ).'`) VALUES('.implode( ',', $values ).');';
         $insert = $this->query( $req );
         if ( $insert !== false ) {
             $insert = $this->connection->lastInsertId();
@@ -94,12 +94,13 @@ class BS_Database {
 
     /* Test */
     function test_fields( $fields ) {
+        $new_fields = array();
         foreach ( $this->default_fields as $id => $field ) {
-            if ( !isset( $fields[$id] ) ) {
-                $fields[$id] = $field;
+            if ( isset( $fields[$id] ) ) {
+                $new_fields[$id] = $fields[$id]['value'];
             }
         }
-        return $fields;
+        return $new_fields;
     }
 
     function test_install() {

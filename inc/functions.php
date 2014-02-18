@@ -7,7 +7,7 @@
 function getCurrentPageURL() {
     // Get Base URL
     $pageURL = 'http';
-    if ( $_SERVER['HTTPS'] == 'on' ) {
+    if ( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ) {
         $pageURL .= 's';
     }
     $pageURL .= '://';

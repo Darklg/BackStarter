@@ -42,6 +42,8 @@ class BS_User {
             $values['password'] = $this->hashPassword( $user_details['password'] );
         }
 
+        $values['key'] = md5( $values['email'].microtime( 1 ).$values['password'] );
+        $values['api_key'] = md5( microtime( 1 ).$values['password'].$values['email'] );
 
         if ( !empty( $errors ) ) {
             return $errors;
@@ -55,7 +57,7 @@ class BS_User {
                 return $db->insert( 'user', $values );
             }
             else {
-                return 'This user already exists';
+                return array( 'This user already exists' );
             }
         }
     }
