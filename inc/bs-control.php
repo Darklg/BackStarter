@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if ( !defined( 'BS_PATH' ) ) {
     exit( 'Error' );
 }

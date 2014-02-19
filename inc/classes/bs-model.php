@@ -76,4 +76,9 @@ class BS_Model {
             return '<ul class="messages"><li>'.implode( '</li><li>', $this->messages ).'</li></ul>';
         }
     }
+
+    function get_db() {
+        $this->db = new BS_Database();
+        return $this->db;
+    }
 }

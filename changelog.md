@@ -58,7 +58,7 @@ Changelog
 * User : Test values
 * User : Hash Password
 
-2014-02-17 : v 0.5
+2014-02-18 : v 0.5
 ---
 
 * Full installation process
@@ -66,3 +66,11 @@ Changelog
 * Model : messages
 * User : keys
 * bugfixes
+
+2014-02-19 : v 0.5.1
+---
+
+* User : login
+* User : getters
+* Database : select returns associative array
+* Install : Create htaccess

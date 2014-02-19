@@ -11,7 +11,7 @@ class BS_Database {
         'bs-dbpass' => BS_DBPASS
     );
 
-    function __construct( $fields ) {
+    function __construct( $fields = array() ) {
         // Test fields
         $this->fields = $this->test_fields( $fields );
         // Create connection
@@ -36,17 +36,23 @@ class BS_Database {
 
     function select( $query ) {
         $res = $this->query( $query );
+        $res->setFetchMode( PDO::FETCH_ASSOC );
         $rows = array();
-        foreach ( $res as $row ) {
-            $rows[$row];
+        while ( $row = $res->fetch() ) {
+            $rows[] = $row;
         }
+        $res->closeCursor();
         return $rows;
     }
 
     function select_where( $table_name, $params ) {
         $where = array();
         foreach ( $params as $key => $var ) {
-            $where[] = $key . "=".$this->protect_field( $var );
+            $this_var = $this->protect_field( $var );
+            if ( $key == 'id' ) {
+                $this_var = $var;
+            }
+            $where[] = $key . "=".$this_var;
         }
         $req = 'SELECT * FROM `'.$this->fields['bs-dbprefix'].$table_name.'`';
         $req .= ' WHERE ' . implode( ' AND ', $where );
@@ -98,6 +104,9 @@ class BS_Database {
         foreach ( $this->default_fields as $id => $field ) {
             if ( isset( $fields[$id] ) ) {
                 $new_fields[$id] = $fields[$id]['value'];
+            }
+            else {
+                $new_fields[$id] = $field;
             }
         }
         return $new_fields;

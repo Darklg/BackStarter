@@ -52,7 +52,7 @@ class BS_Model_Install extends BS_Model {
 
     }
 
-    function set_config_file() {
+    private function set_config_file() {
         // Create config file
         $filecontent = file_get_contents( BS_PATH . 'bs-default-config.php' );
         $filecontent .= "
@@ -69,7 +69,7 @@ define( 'BS_PREFIX', '".$this->dbfields['bs-dbprefix']['value']."' );
         file_put_contents( BS_PATH . 'bs-config.php', $filecontent );
     }
 
-    function set_sql_tables( $db ) {
+    private function set_sql_tables( $db ) {
         // Create tables
         // - Users
         $db->create_table( 'user', array(
@@ -89,7 +89,21 @@ define( 'BS_PREFIX', '".$this->dbfields['bs-dbprefix']['value']."' );
             ) ) ;
     }
 
-    function create_admin_user( $db ) {
+    private function set_htaccess( $value='' ) {
+        $htaccess_file = BS_PATH . '.htaccess';
+        $htaccess_content = '<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-z0-9-_]+)\.html$  ?p=$1 [L]
+</IfModule>';
+        if ( !file_exists( $htaccess_file ) ) {
+            file_put_contents( $htaccess_file, $htaccess_content );
+        }
+    }
+
+    private function create_admin_user( $db ) {
         // Create admin
         $user = new BS_User();
         $new_user = $user->create( $db, array(
