@@ -69,7 +69,10 @@ class BS_User {
         }
     }
 
-    private function get_user_by( $db, $details ) {
+    private function get_user_by( $db = false, $details = array() ) {
+        if ( $db === false ) {
+            return;
+        }
         foreach ( $details as $id => $var ) {
             if ( $id == 'password' ) {
                 $details[$id] = $this->hashPassword( $var );

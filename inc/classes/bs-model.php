@@ -81,4 +81,12 @@ class BS_Model {
         $this->db = new BS_Database();
         return $this->db;
     }
+
+    function getUrl( $page ) {
+        $url = BS_BASEURL;
+        if ( !empty( $page ) && !in_array( $page, array( 'index' ) ) ) {
+            $url .= '?p='.$page;
+        }
+        return $url;
+    }
 }

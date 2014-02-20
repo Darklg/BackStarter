@@ -1,6 +1,6 @@
 <?php
 echo $this->getModule( 'header' );
 ?>
-<h1>Error 404</h1>
+<h2>Error 404</h2>
 <?php
 echo $this->getModule( 'footer' );

@@ -50,9 +50,13 @@ include BS_INC_DIR . 'bs-config.php';
 
 $model = false;
 $model_path = BS_INC_DIR . 'models/'.$m.'.php';
-if ( file_exists( $model_path ) ) {
-    include $model_path;
+if ( !file_exists( $model_path ) ) {
+    $p = $m = '404';
+    $model_path = BS_INC_DIR . 'models/404.php';
 }
+
+include $model_path;
+
 
 /* Set Page Template
 -------------------------- */

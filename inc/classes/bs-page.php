@@ -14,7 +14,7 @@ class BS_Page {
         );
     }
 
-    public function getModel(){
+    public function getModel() {
         return $this->model;
     }
 
@@ -38,11 +38,10 @@ class BS_Page {
     public function loadPage( ) {
         $base_url = BS_VIEWS_DIR;
         $template = $base_url . $this->getInfo( 'template' ) . '.php';
-        if ( !file_exists( $template ) ) {
-            $template = $base_url . '404.php';
+        if ( file_exists( $template ) ) {
+            $this->sendHeaders();
+            include $template;
         }
-        $this->sendHeaders();
-        include $template;
     }
 
     public function getModule( $id ) {

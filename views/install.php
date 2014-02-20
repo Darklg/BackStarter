@@ -1,7 +1,6 @@
 <?php
 $model = $this->getModel();
-
-echo $this->getModule( 'header' );
+echo $this->getModule( 'before-header' );
 ?>
 <h1>Hello install !</h1>
 <?php echo $model->display_messages(); ?>

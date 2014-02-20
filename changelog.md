@@ -74,3 +74,14 @@ Changelog
 * User : getters
 * Database : select returns associative array
 * Install : Create htaccess
+
+2014-02-20 : v 0.5.2
+---
+
+* Login form
+* Logout
+* Better template launch
+* Better template division
+* Main menu
+* get URL
+

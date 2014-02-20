@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<!--[if lt IE 8 ]><html dir="ltr" lang="<?php echo $this->getPageHTMLLang(); ?>" class="is_ie7 lt_ie8 lt_ie9 lt_ie10"><![endif]-->
-<!--[if IE 8 ]><html dir="ltr" lang="<?php echo $this->getPageHTMLLang(); ?>" class="is_ie8 lt_ie9 lt_ie10"><![endif]-->
-<!--[if IE 9 ]><html dir="ltr" lang="<?php echo $this->getPageHTMLLang(); ?>" class="is_ie9 lt_ie10"><![endif]-->
-<!--[if gt IE 9]><html dir="ltr" lang="<?php echo $this->getPageHTMLLang(); ?>" class="is_ie10"><![endif]-->
-<!--[if !IE]><!--><html dir="ltr" lang="<?php echo $this->getPageHTMLLang(); ?>"><!--<![endif]-->
-<head>
-    <meta charset="UTF-8" />
-    <title><?php echo $this->getInfo('title'); ?></title>
-    <meta name="viewport" content="width=device-width" />
-</head>
-<body class="<?php echo $this->getInfo('body_class'); ?>">
+<?php
+$user = new BS_User( 'current' );
+$model = $this->getModel();
+?><h1><?php echo $this->getInfo( 'title' ); ?></h1>
+<ul>
+    <?php if ( $user->isLoggedIn() ) { ?>
+    <li><a href="#">My account</a></li>
+    <li><a href="<?php echo $model->getUrl( 'logout' ); ?>">Logout</a></li>
+    <?php } else { ?>
+    <li><a href="<?php echo $model->getUrl( 'login' ); ?>">Login</a></li>
+    <?php } ?>
+</ul>
