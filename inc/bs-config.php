@@ -11,6 +11,8 @@ $constants = array(
     'BS_NAME' => 'BackStarter',
     /* Default Site Name */
     'BS_BASEURL' => '/',
+    /* Rewrite */
+    'BS_URLREWRITE' => 1,
     /* Database */
     'BS_DBHOST' => '',
     'BS_DBNAME' => '',

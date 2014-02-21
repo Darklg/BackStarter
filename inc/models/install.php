@@ -96,7 +96,7 @@ define( 'BS_PREFIX', '".$this->dbfields['bs-dbprefix']['value']."' );
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^([a-z0-9-_]+)\.html$  ?p=$1 [L]
+    RewriteRule ^([a-z0-9-_\/]+)\.html$  ?p=$1 [L]
 </IfModule>';
         if ( !file_exists( $htaccess_file ) ) {
             file_put_contents( $htaccess_file, $htaccess_content );

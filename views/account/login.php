@@ -5,7 +5,7 @@ echo $this->getModule( 'before-header' );
 echo $this->getModule( 'header' );
 echo $model->display_messages();
 ?>
-<form action="" method="post">
+<form action="<?php echo $model->getUrl( 'account/login' ); ?>" method="post">
     <ul>
         <li>
             <label>Email</label>

@@ -1,17 +1,15 @@
 <?php
 
-class BS_Model_Login extends BS_Model {
+class BS_Model_Register extends BS_Model {
     public $dbfields = array(
         'email' => array( 'name' => 'User email', 'value' => '', 'test' => array( 'required', 'email' ) ),
         'password' => array( 'name' => 'User password', 'value' => '', 'test' => array( 'required', 'minlength:6' ) ),
     );
 
-    private $after_login = '';
-
     function __construct() {
         $this->user = new BS_User( 'current' );
         if ( $this->user->isLoggedIn() ) {
-            bs_redirect( $this->after_login );
+            bs_redirect( $this->getUrl( 'account/dashboard' ) );
         }
         $this->postAction();
     }
@@ -24,27 +22,33 @@ class BS_Model_Login extends BS_Model {
         $this->dbfields = $this->set_fields_from( $this->dbfields, $_POST );
         $test_fields = $this->test_fields( $this->dbfields );
 
+        // Invalid fields
         if ( !empty( $test_fields ) ) {
             $this->add_messages( $test_fields );
             return;
         }
 
+        // Try to create user
         $db = new BS_Database( );
 
-        $connect = $this->user->connect( $db, array(
+        $new_user = $this->user->create( $db, array(
                 'email' => $this->dbfields['email']['value'],
                 'password' => $this->dbfields['password']['value'],
             ) );
 
-        if ( $connect ) {
-            bs_redirect( $this->after_login );
-            die;
+        // If creation ok
+        if ( is_numeric( $new_user ) ) {
+            $connect = $this->user->connect( $db, array(
+                    'id' => $new_user
+                ) );
+            bs_redirect( $this->getUrl( 'account/dashboard' ) );
         }
         else {
-            $this->add_messages( 'Invalid username or password.' );
+            $this->add_messages( $new_user );
         }
+
         return false;
     }
 }
 
-$model = new BS_Model_Login();
+$model = new BS_Model_Register();

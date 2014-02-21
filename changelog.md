@@ -85,3 +85,9 @@ Changelog
 * Main menu
 * get URL
 
+2014-02-21 : v 0.5.3
+---
+
+* Register form
+* Sub folders
+* URL Rewrite by default

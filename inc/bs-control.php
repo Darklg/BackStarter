@@ -27,7 +27,7 @@ $m = $p = 'index';
 
 if ( isset( $_GET['p'] ) ) {
     $p = '404';
-    if ( !in_array( $_GET['p'], array( 'index', 'install' ) ) && preg_match( '/^([a-z0-9-_]+)$/', $_GET['p'] ) ) {
+    if ( !in_array( $_GET['p'], array( 'index', 'install' ) ) && preg_match( '/^([a-z0-9-_\/]+)$/', $_GET['p'] ) ) {
         $m = $p = $_GET['p'];
     }
 }

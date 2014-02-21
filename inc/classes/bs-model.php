@@ -85,7 +85,12 @@ class BS_Model {
     function getUrl( $page ) {
         $url = BS_BASEURL;
         if ( !empty( $page ) && !in_array( $page, array( 'index' ) ) ) {
-            $url .= '?p='.$page;
+            if ( BS_URLREWRITE ) {
+                $url .= $page . '.html';
+            }
+            else {
+                $url .= '?p='.$page;
+            }
         }
         return $url;
     }

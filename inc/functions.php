@@ -35,7 +35,7 @@ function getCurrentPageURL() {
 
 function bs_redirect( $url = '', $code = 302 ) {
     if ( empty( $url ) ) {
-        $url = BS_BASEURL . $url;
+        $url = BS_BASEURL;
     }
     switch ( $code ) {
     case 302:
