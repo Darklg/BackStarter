@@ -3,12 +3,12 @@ $user = new BS_User( 'current' );
 $model = $this->getModel();
 ?><h1><?php echo $this->getInfo( 'title' ); ?></h1>
 <ul>
-    <li><a href="<?php echo $model->getUrl( ); ?>">Home</a></li>
+    <li><a href="<?php echo $model->getUrl( ); ?>"><?php echo _( 'Home' ); ?></a></li>
     <?php if ( $user->isLoggedIn() ) { ?>
     <li><a href="<?php echo $model->getUrl( 'account/dashboard' ); ?>"><?php echo $user->getEmail(); ?></a></li>
-    <li><a href="<?php echo $model->getUrl( 'account/logout' ); ?>">Logout</a></li>
+    <li><a href="<?php echo $model->getUrl( 'account/logout' ); ?>"><?php echo _( 'Logout' ); ?></a></li>
     <?php } else { ?>
-    <li><a href="<?php echo $model->getUrl( 'account/login' ); ?>">Login</a></li>
-    <li><a href="<?php echo $model->getUrl( 'account/register' ); ?>">Register</a></li>
+    <li><a href="<?php echo $model->getUrl( 'account/login' ); ?>"><?php echo _( 'Login' ); ?></a></li>
+    <li><a href="<?php echo $model->getUrl( 'account/register' ); ?>"><?php echo _( 'Register' ); ?></a></li>
     <?php } ?>
 </ul>

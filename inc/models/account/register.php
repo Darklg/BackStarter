@@ -41,6 +41,7 @@ class BS_Model_Register extends BS_Model {
             $connect = $this->user->connect( $db, array(
                     'id' => $new_user
                 ) );
+            $_SESSION['welcome'] = 1;
             bs_redirect( $this->getUrl( 'account/dashboard' ) );
         }
         else {

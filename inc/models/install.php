@@ -45,6 +45,8 @@ class BS_Model_Install extends BS_Model {
                 return;
             }
 
+            $this->set_htaccess( );
+
             $this->set_sql_tables( $db );
 
             $this->create_admin_user( $db );
@@ -96,7 +98,9 @@ define( 'BS_PREFIX', '".$this->dbfields['bs-dbprefix']['value']."' );
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^([a-z0-9-_\/]+)\.html$  ?p=$1 [L]
+    RewriteRule ^([a-z]{2})\/$ ?lang=$1 [L]
+    RewriteRule ^([a-z]{2})\/([a-z0-9-_\/]+)\.html$ ?lang=$1&p=$2 [L]
+    RewriteRule ^([a-z0-9-_\/]+)\.html$ ?p=$1 [L]
 </IfModule>';
         if ( !file_exists( $htaccess_file ) ) {
             file_put_contents( $htaccess_file, $htaccess_content );

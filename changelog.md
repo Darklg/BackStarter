@@ -91,3 +91,10 @@ Changelog
 * Register form
 * Sub folders
 * URL Rewrite by default
+
+2014-02-21 : v 0.5.4
+---
+
+* Translation
+* Welcome message after register
+* Fixes

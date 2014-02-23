@@ -11,6 +11,13 @@ class BS_Model_Dashboard extends BS_Model {
     function getUser() {
         return $this->user;
     }
+
+    function getWelcome() {
+        if ( isset( $_SESSION['welcome'] ) ) {
+            unset( $_SESSION['welcome'] );
+            return '<p class="welcome">Welcome !</p>';
+        }
+    }
 }
 
 $model = new BS_Model_Dashboard();

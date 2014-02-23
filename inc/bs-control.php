@@ -12,9 +12,11 @@ if ( !defined( 'BS_PATH' ) ) {
 
 include BS_INC_DIR . 'functions.php';
 include BS_INC_DIR . 'classes/bs-model.php';
+include BS_INC_DIR . 'classes/bs-admin.php';
 include BS_INC_DIR . 'classes/bs-database.php';
 include BS_INC_DIR . 'classes/bs-user.php';
 include BS_INC_DIR . 'classes/bs-page.php';
+include BS_INC_DIR . 'classes/bs-lang.php';
 
 /* ----------------------------------------------------------
   Launch project
@@ -44,6 +46,11 @@ else {
 }
 
 include BS_INC_DIR . 'bs-config.php';
+
+/* Lang
+-------------------------- */
+
+$BS_Lang = new BS_Lang();
 
 /* Set Model
 -------------------------- */
