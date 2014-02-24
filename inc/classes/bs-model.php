@@ -82,8 +82,20 @@ class BS_Model {
         return $this->db;
     }
 
-    function getUrl( $page ) {
-        $url = BS_BASEURL;
+    function getUrl( $page = '', $lang = false ) {
+        global $current_lang, $default_lang;
+
+        // Set lang to current if it isnt specified
+        if ( $lang == false ) {
+            $lang = $current_lang;
+        }
+
+        // Prefix lang if $lang isnt default lang
+        if ( $lang == $default_lang ) {
+            $lang = false;
+        }
+
+        $url = '';
         if ( !empty( $page ) && !in_array( $page, array( 'index' ) ) ) {
             if ( BS_URLREWRITE ) {
                 $url .= $page . '.html';
@@ -92,6 +104,21 @@ class BS_Model {
                 $url .= '?p='.$page;
             }
         }
+
+        $url = BS_BASEURL . $this->setLangURL( $url, $lang );
+
         return $url;
+    }
+
+    private function setLangURL( $url, $lang ) {
+        if ( $lang == false ) {
+            return $url;
+        }
+        if ( BS_URLREWRITE ) {
+            return $lang . '/' . $url;
+        }
+        else {
+            return $url . '&lang=' . $lang;
+        }
     }
 }

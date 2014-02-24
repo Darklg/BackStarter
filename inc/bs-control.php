@@ -50,7 +50,9 @@ include BS_INC_DIR . 'bs-config.php';
 /* Lang
 -------------------------- */
 
-$BS_Lang = new BS_Lang();
+$BS_Lang = new BS_Lang( $p );
+$default_lang = $BS_Lang->getDefaultLangId();
+$current_lang = $BS_Lang->getCurrentLangId();
 
 /* Set Model
 -------------------------- */

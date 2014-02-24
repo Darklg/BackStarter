@@ -13,13 +13,20 @@ class BS_Lang {
     );
     private $default_lang = 'fr';
 
-    function __construct() {
+    function __construct( $p ) {
+        $this->id_lang = $this->getDefaultLangId();
 
-        $lang = $this->languages[$this->default_lang]['lang'];
+        // If default language is forced in url, redirect without lang id
+        if ( isset( $_GET['lang'] ) && $_GET['lang'] == $this->id_lang ) {
+            $m = new BS_Model();
+            bs_redirect( $m->getUrl( $p ) );
+        }
 
+        $lang = $this->languages[$this->id_lang]['lang'];
         // If translation is available for the requested language
         if ( isset( $_GET['lang'] ) && array_key_exists( $_GET['lang'], $this->languages ) ) {
-            $lang = $this->languages[$_GET['lang']]['lang'];
+            $this->id_lang = $_GET['lang'];
+            $lang = $this->languages[$this->id_lang]['lang'];
         }
 
         // Setting language
@@ -30,5 +37,13 @@ class BS_Lang {
         bindtextdomain( "backstarter", BS_INC_DIR . "locale" );
         bind_textdomain_codeset( "backstarter", "UTF-8" );
         textdomain( "backstarter" );
+    }
+
+    public function getCurrentLangId() {
+        return $this->id_lang;
+    }
+
+    public function getDefaultLangId() {
+        return $this->default_lang;
     }
 }

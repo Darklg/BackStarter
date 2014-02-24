@@ -92,9 +92,15 @@ Changelog
 * Sub folders
 * URL Rewrite by default
 
-2014-02-21 : v 0.5.4
+2014-02-22 : v 0.5.4
 ---
 
 * Translation
 * Welcome message after register
 * Fixes
+
+2014-02-23 : v 0.5.5
+---
+
+* Translation : redirection if forced default lang in url
+* Translation : getUrl with lang
