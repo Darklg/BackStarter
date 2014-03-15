@@ -1,16 +1,17 @@
 <?php
 
 class BS_Model_Register extends BS_Model {
-    public $dbfields = array(
-        'email' => array( 'name' => 'User email', 'value' => '', 'test' => array( 'required', 'email' ) ),
-        'password' => array( 'name' => 'User password', 'value' => '', 'test' => array( 'required', 'minlength:6' ) ),
-    );
+    public $dbfields = array();
 
     function __construct() {
+        // Test current user
         $this->user = new BS_User( 'current' );
         if ( $this->user->isLoggedIn() ) {
             bs_redirect( $this->getUrl( 'account/dashboard' ) );
         }
+        // Set dbfields from user model
+        $this->dbfields = $this->user->dbfields;
+        // Set action after post
         $this->postAction();
     }
 
@@ -32,6 +33,7 @@ class BS_Model_Register extends BS_Model {
         $db = new BS_Database( );
 
         $new_user = $this->user->create( $db, array(
+                'name' => $this->dbfields['name']['value'],
                 'email' => $this->dbfields['email']['value'],
                 'password' => $this->dbfields['password']['value'],
             ) );

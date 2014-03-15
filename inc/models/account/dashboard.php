@@ -15,7 +15,7 @@ class BS_Model_Dashboard extends BS_Model {
     function getWelcome() {
         if ( isset( $_SESSION['welcome'] ) ) {
             unset( $_SESSION['welcome'] );
-            return '<p class="welcome">Welcome !</p>';
+            return '<p class="welcome">'._( 'Welcome !' ).'</p>';
         }
     }
 }

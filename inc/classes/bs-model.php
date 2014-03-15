@@ -27,19 +27,19 @@ class BS_Model {
                     case 'required':
                         if ( empty( $field['value'] ) ) {
                             $field_ok = false;
-                            $errors[] = sprintf( 'The field "%s" should not be empty', $field['name'] );
+                            $errors[] = sprintf( _( 'The field "%s" should not be empty' ), $field['name'] );
                         }
                         break;
                     case 'minlength:6':
                         if ( strlen( $field['value'] ) < 6 ) {
                             $field_ok = false;
-                            $errors[] = sprintf( 'The field "%s" should be at least 6 characters long', $field['name'] );
+                            $errors[] = sprintf( _( 'The field "%s" should be at least 6 characters long' ), $field['name'] );
                         }
                         break;
                     case 'email':
                         if ( filter_var( $field['value'], FILTER_VALIDATE_EMAIL ) === false ) {
                             $field_ok = false;
-                            $errors[] = sprintf( 'The field "%s" should be an email', $field['name'] );
+                            $errors[] = sprintf( _( 'The field "%s" should be an email' ), $field['name'] );
                         }
                         break;
                     }

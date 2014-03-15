@@ -1,18 +1,70 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2014-02-23 00:59+0100\n"
+"Project-Id-Version: BackStarter\n"
+"POT-Creation-Date: 2014-03-15 23:36+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kevin <kevin@rocher.me>\n"
 "Language-Team: \n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: ../../../\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ../.\n"
+
+#: .././inc/classes/bs-database.php:22
+msgid "MySQL fails:"
+msgstr "Echec de MySQL :"
+
+#: .././inc/classes/bs-model.php:30
+#, php-format
+msgid "The field \"%s\" should not be empty"
+msgstr "Le champ \"%s\" ne devrait pas être vide"
+
+#: .././inc/classes/bs-model.php:36
+#, php-format
+msgid "The field \"%s\" should be at least 6 characters long"
+msgstr "Le champ \"%s\" doit contenir un minimum de 6 caractères"
+
+#: .././inc/classes/bs-model.php:42
+#, php-format
+msgid "The field \"%s\" should be an email"
+msgstr "Le champ \"%s\" devrait être un email"
+
+#: .././inc/classes/bs-user.php:17
+msgid "User name"
+msgstr "Nom de l'utilisateur"
+
+#: .././inc/classes/bs-user.php:18
+msgid "User email"
+msgstr "Adresse email de l'utilisateur"
+
+#: .././inc/classes/bs-user.php:19
+msgid "User password"
+msgstr "Mot de passe de l'utilisateur"
+
+#: .././inc/classes/bs-user.php:86
+msgid "This user already exists"
+msgstr "Cet utilisateur existe déjà"
+
+#: .././inc/classes/bs-user.php:128
+msgid "Email address is invalid"
+msgstr "L'adresse email est invalide"
+
+#: .././inc/classes/bs-user.php:133
+msgid "Name is invalid"
+msgstr "Le nom est invalide"
+
+#: .././inc/classes/bs-user.php:138
+msgid "Password is invalid"
+msgstr "Le mot de passe est invalide"
+
+#: .././inc/models/account/dashboard.php:18
+msgid "Welcome !"
+msgstr "Bienvenue !"
 
 #: .././views/404.php:4
 msgid "Error 404"
@@ -22,6 +74,59 @@ msgstr "Erreur 404"
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
+#: .././views/account/login.php:11 .././views/account/register.php:16
+msgid "Email"
+msgstr "Email"
+
+#: .././views/account/login.php:15 .././views/account/register.php:20
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .././views/account/login.php:19 .././views/account/register.php:24
+#: .././views/modules/header.php:11
+msgid "Login"
+msgstr "Connexion"
+
+#: .././views/account/register.php:9
+msgid "Create your account!"
+msgstr "Créez votre compte !"
+
+#: .././views/account/register.php:12
+msgid "Name"
+msgstr "Nom"
+
+#: .././views/install.php:9
+msgid "Site Name:"
+msgstr "Nom du site :"
+
+#: .././views/install.php:12
+msgid "Admin email:"
+msgstr "E-mail admin :"
+
+#: .././views/install.php:13 .././views/install.php:19
+msgid "Pass:"
+msgstr "Mot de passe :"
+
+#: .././views/install.php:16
+msgid "Host:"
+msgstr "Serveur :"
+
+#: .././views/install.php:17
+msgid "Name:"
+msgstr "Nom :"
+
+#: .././views/install.php:18
+msgid "User:"
+msgstr "Utilisateur :"
+
+#: .././views/install.php:20
+msgid "Prefix:"
+msgstr "Préfixe : "
+
+#: .././views/install.php:23
+msgid "Submit"
+msgstr "Envoyer"
+
 #: .././views/modules/header.php:6
 msgid "Home"
 msgstr "Accueil"
@@ -29,10 +134,6 @@ msgstr "Accueil"
 #: .././views/modules/header.php:9
 msgid "Logout"
 msgstr "Déconnexion"
-
-#: .././views/modules/header.php:11
-msgid "Login"
-msgstr "Connexion"
 
 #: .././views/modules/header.php:12
 msgid "Register"

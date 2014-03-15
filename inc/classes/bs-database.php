@@ -19,7 +19,7 @@ class BS_Database {
             $this->connection = new PDO( 'mysql:host='. $this->fields['bs-dbhost'] .';dbname='.$this->fields['bs-dbname'] , $this->fields['bs-dbuser'], $this->fields['bs-dbpass'] );
         }
         catch( Exception $e ) {
-            exit( "<strong>MySQL fails :</strong> " . $e->getMessage() );
+            exit( "<strong>" ._( 'MySQL fails:' ). "</strong> " . $e->getMessage() );
         }
     }
 

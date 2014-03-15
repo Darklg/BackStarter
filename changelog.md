@@ -104,3 +104,11 @@ Changelog
 
 * Translation : redirection if forced default lang in url
 * Translation : getUrl with lang
+
+2014-03-15 : v 0.6
+---
+
+* Register with name
+* Translation : Messages & fields
+* User : Get avatar via gravatar
+* User : DB Fields

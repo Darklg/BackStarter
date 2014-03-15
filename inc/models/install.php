@@ -112,6 +112,7 @@ define( 'BS_PREFIX', '".$this->dbfields['bs-dbprefix']['value']."' );
         $user = new BS_User();
         $new_user = $user->create( $db, array(
                 'email' => $this->dbfields['bs-adminemail']['value'],
+                'name' => 'Admin',
                 'password' => $this->dbfields['bs-adminpass']['value'],
             ) );
 

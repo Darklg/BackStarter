@@ -5,11 +5,19 @@ class BS_User {
         'id' => 0,
         'email' => 'anon@nymous.org',
         'password' => 'password',
+        'name' => 'Anonymous',
         'level' => 0,
         'logged_in' => 0
     );
 
+    public $dbfields = array();
+
     public function __construct( $mode = '' ) {
+        $this->dbfields = array(
+            'name' => array( 'name' => _( 'User name' ), 'value' => '', 'test' => array( 'required', 'minlength:6' ) ),
+            'email' => array( 'name' => _( 'User email' ), 'value' => '', 'test' => array( 'required', 'email' ) ),
+            'password' => array( 'name' => _( 'User password' ), 'value' => '', 'test' => array( 'required', 'minlength:6' ) ),
+        );
         switch ( $mode ) {
         case 'current':
             // Try to load from session
@@ -49,6 +57,17 @@ class BS_User {
             $values['password'] = $this->hashPassword( $user_details['password'] );
         }
 
+        // Clean name
+        $user_details['name'] = strip_tags( $user_details['name'] );
+        // Test name
+        $test_name = $this->invalidValue( 'name', $user_details );
+        if ( $test_name !== true ) {
+            $errors[] = $test_name;
+        }
+        else {
+            $values['name'] = $user_details['name'];
+        }
+
         $values['key'] = md5( $values['email'].microtime( 1 ).$values['password'] );
         $values['api_key'] = md5( microtime( 1 ).$values['password'].$values['email'] );
 
@@ -64,7 +83,7 @@ class BS_User {
                 return $db->insert( 'user', $values );
             }
             else {
-                return array( 'This user already exists' );
+                return array( _( 'This user already exists' ) );
             }
         }
     }
@@ -106,12 +125,17 @@ class BS_User {
         switch ( $id ) {
         case 'email':
             if ( !isset( $user_details['email'] ) || filter_var( $user_details['email'], FILTER_VALIDATE_EMAIL ) === false ) {
-                return 'Email address is invalid';
+                return _( 'Email address is invalid' );
+            }
+            break;
+        case 'name':
+            if ( !isset( $user_details['name'] ) || empty( $user_details['name'] ) ) {
+                return _( 'Name is invalid' );
             }
             break;
         case 'password':
             if ( !isset( $user_details['password'] ) || empty( $user_details['password'] ) || strlen( $user_details['password'] ) < 6 ) {
-                return 'Password is invalid';
+                return _( 'Password is invalid' );
             }
             break;
         }
@@ -126,8 +150,16 @@ class BS_User {
     }
 
     // Getters
+    public function getAvatar( $size = 32 ) {
+        $size = is_numeric( $size ) ? $size : 32;
+        $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $this->user_details['email'] ) ) ) . "?s=" . $size;
+        return $grav_url;
+    }
     public function getEmail() {
         return $this->user_details['email'];
+    }
+    public function getName() {
+        return $this->user_details['name'];
     }
     public function getID() {
         return $this->user_details['id'];
